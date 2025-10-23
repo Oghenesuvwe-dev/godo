@@ -33,7 +33,8 @@ const (
 )
 
 // GenAIService is an interface for interfacing with the Gen AI Agent endpoints
-// of the DigitalOcean API.
+// of the DigitalOcean API. This service provides comprehensive AI agent management
+// including agent creation, knowledge base integration, API key management, and model access.
 // See https://docs.digitalocean.com/reference/api/digitalocean/#tag/GenAI-Platform-(Public-Preview) for more details.
 type GenAIService interface {
 	ListAgents(context.Context, *ListOptions) ([]*Agent, *Response, error)
