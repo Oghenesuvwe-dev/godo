@@ -169,7 +169,6 @@ func (r *BYOIPPrefixServiceOp) GetResources(ctx context.Context, uuid string, op
 
 // Create a BYOIP prefix
 func (r *BYOIPPrefixServiceOp) Create(ctx context.Context, byoipPrefix *BYOIPPrefixCreateReq) (*BYOIPPrefixCreateResp, *Response, error) {
-
 	if byoipPrefix.Prefix == "" {
 		return nil, nil, fmt.Errorf("prefix is required")
 	}
@@ -213,7 +212,6 @@ func (r *BYOIPPrefixServiceOp) Delete(ctx context.Context, uuid string) (*Respon
 
 // Update a BYOIP prefix
 func (r *BYOIPPrefixServiceOp) Update(ctx context.Context, prefixUUID string, updateReq *BYOIPPrefixUpdateReq) (*BYOIPPrefix, *Response, error) {
-
 	if prefixUUID == "" {
 		return nil, nil, fmt.Errorf("prefix UUID is required")
 	}

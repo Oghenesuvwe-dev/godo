@@ -142,7 +142,6 @@ func TestVPCs_Create(t *testing.T) {
 }
 
 func TestVPCs_Update(t *testing.T) {
-
 	tests := []struct {
 		desc                string
 		id                  string
@@ -233,7 +232,6 @@ func TestVPCs_Update(t *testing.T) {
 }
 
 func TestVPCs_Set(t *testing.T) {
-
 	tests := []struct {
 		desc                string
 		id                  string

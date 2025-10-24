@@ -20,6 +20,7 @@ var testOneClickJSON = `
       "type":"droplet"
     }
 `
+
 var testMessage = &InstallKubernetesAppsResponse{
 	Message: "test message",
 }

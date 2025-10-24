@@ -25,7 +25,6 @@ func WaitForActive(ctx context.Context, client *godo.Client, monitorURI string) 
 	failCount := 0
 	for !completed {
 		action, _, err := client.DropletActions.GetByURI(ctx, monitorURI)
-
 		if err != nil {
 			select {
 			case <-ctx.Done():

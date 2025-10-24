@@ -25,7 +25,6 @@ func WaitForAvailable(ctx context.Context, client *godo.Client, monitorURI strin
 	failCount := 0
 	for !completed {
 		action, _, err := client.ImageActions.GetByURI(ctx, monitorURI)
-
 		if err != nil {
 			select {
 			case <-ctx.Done():

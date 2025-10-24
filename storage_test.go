@@ -145,8 +145,7 @@ func TestStorageVolumes_ListVolumesByName(t *testing.T) {
 	setup()
 	defer teardown()
 
-	jBlob :=
-		`{
+	jBlob := `{
 			"volumes": [
 				{
 					"region": {"slug": "nyc3"},
@@ -212,8 +211,7 @@ func TestStorageVolumes_ListVolumesByRegion(t *testing.T) {
 	setup()
 	defer teardown()
 
-	jBlob :=
-		`{
+	jBlob := `{
 			"volumes": [
 				{
 					"region": {"slug": "nyc3"},
@@ -279,8 +277,7 @@ func TestStorageVolumes_ListVolumesByNameAndRegion(t *testing.T) {
 	setup()
 	defer teardown()
 
-	jBlob :=
-		`{
+	jBlob := `{
 			"volumes": [
 				{
 					"region": {"slug": "nyc3"},

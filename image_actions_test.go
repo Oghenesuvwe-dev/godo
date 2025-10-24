@@ -27,7 +27,6 @@ func TestImageActions_Transfer(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	transfer, _, err := client.ImageActions.Transfer(ctx, 12345, transferRequest)
@@ -62,7 +61,6 @@ func TestImageActions_Convert(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	transfer, _, err := client.ImageActions.Convert(ctx, 12345)

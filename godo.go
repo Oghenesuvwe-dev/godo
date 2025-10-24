@@ -607,7 +607,8 @@ func DoRequest(ctx context.Context, req *http.Request) (*http.Response, error) {
 func DoRequestWithClient(
 	ctx context.Context,
 	client *http.Client,
-	req *http.Request) (*http.Response, error) {
+	req *http.Request,
+) (*http.Response, error) {
 	req = req.WithContext(ctx)
 	return client.Do(req)
 }
