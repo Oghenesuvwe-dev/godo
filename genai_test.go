@@ -421,6 +421,7 @@ var listAvailableModelsResponse = `
 	}
 }
 `
+
 var listAPIKeysResponse = `
 {
     "api_key_infos": [
@@ -797,6 +798,7 @@ var listAgentVersionsResponse = `
 	}
 }
 `
+
 var listAnthropicAPIKeysResponse = `
 {
     "api_key_infos": [
@@ -841,6 +843,7 @@ var anthropicAPIKeyInfoResponse = `
     }
 }
 `
+
 var listAgentsByAnthropicAPIKeyResponse = `
 {
   "agents": [

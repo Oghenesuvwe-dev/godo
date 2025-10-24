@@ -1211,7 +1211,8 @@ func TestDatabases_ResetUserAuth(t *testing.T) {
 	got, _, err := client.Databases.ResetUserAuth(ctx, dbID, "user", &DatabaseResetUserAuthRequest{
 		MySQLSettings: &DatabaseMySQLUserSettings{
 			AuthPlugin: SQLAuthPluginCachingSHA2,
-		}})
+		},
+	})
 
 	require.NoError(t, err)
 	require.Equal(t, want, got)
@@ -4078,9 +4079,7 @@ func TestDatabases_CreateLogsink(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	want := &DatabaseLogsink{
 		ID:   "deadbeef-dead-4aa5-beef-deadbeef347d",
@@ -4261,9 +4260,7 @@ func TestDatabases_ListLogsinks(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	want := []DatabaseLogsink{
 		{
@@ -4283,7 +4280,8 @@ func TestDatabases_ListLogsinks(t *testing.T) {
 				URL:         "https://user:passwd@192.168.0.1:25060",
 				IndexPrefix: "opensearch-logs",
 			},
-		}}
+		},
+	}
 
 	body := `{
 		"sinks": [
@@ -4343,9 +4341,7 @@ func TestDatabases_StartOnlineMigration(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	body := `{
 		"source": {
@@ -4390,9 +4386,7 @@ func TestDatabases_GetOnlineMigrationStatus(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	body := `{
 		"source": {

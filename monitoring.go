@@ -215,7 +215,6 @@ type MetricsData struct {
 func (s *MonitoringServiceOp) ListAlertPolicies(ctx context.Context, opt *ListOptions) ([]AlertPolicy, *Response, error) {
 	path := alertPolicyBasePath
 	path, err := addOptions(path, opt)
-
 	if err != nil {
 		return nil, nil, err
 	}

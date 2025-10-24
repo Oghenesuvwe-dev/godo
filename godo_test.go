@@ -168,7 +168,6 @@ func TestNewFromToken_cleaned(t *testing.T) {
 
 func TestNew(t *testing.T) {
 	c, err := New(nil)
-
 	if err != nil {
 		t.Fatalf("New(): %v", err)
 	}
@@ -292,7 +291,6 @@ func TestNewRequest_badURL(t *testing.T) {
 func TestNewRequest_withCustomUserAgent(t *testing.T) {
 	ua := "testing/0.0.1"
 	c, err := New(nil, SetUserAgent(ua))
-
 	if err != nil {
 		t.Fatalf("New() unexpected error: %v", err)
 	}
@@ -906,7 +904,6 @@ func TestAddOptions(t *testing.T) {
 func TestCustomUserAgent(t *testing.T) {
 	ua := "testing/0.0.1"
 	c, err := New(nil, SetUserAgent(ua))
-
 	if err != nil {
 		t.Fatalf("New() unexpected error: %v", err)
 	}
@@ -920,7 +917,6 @@ func TestCustomUserAgent(t *testing.T) {
 func TestCustomBaseURL(t *testing.T) {
 	baseURL := "http://localhost/foo"
 	c, err := New(nil, SetBaseURL(baseURL))
-
 	if err != nil {
 		t.Fatalf("New() unexpected error: %v", err)
 	}

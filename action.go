@@ -12,7 +12,7 @@ const (
 	// ActionInProgress is an in progress action status
 	ActionInProgress = "in-progress"
 
-	//ActionCompleted is a completed action status
+	// ActionCompleted is a completed action status
 	ActionCompleted = "completed"
 )
 

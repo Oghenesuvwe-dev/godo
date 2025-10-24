@@ -665,7 +665,6 @@ func (s *DropletsServiceOp) ListAssociatedResourcesForDeletion(ctx context.Conte
 
 func (s *DropletsServiceOp) dropletActionStatus(ctx context.Context, uri string) (string, error) {
 	action, _, err := s.client.DropletActions.GetByURI(ctx, uri)
-
 	if err != nil {
 		return "", err
 	}

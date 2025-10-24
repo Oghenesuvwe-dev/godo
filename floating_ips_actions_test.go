@@ -30,7 +30,6 @@ func TestFloatingIPsActions_Assign(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	assign, _, err := client.FloatingIPActions.Assign(ctx, "192.168.0.1", 12345)

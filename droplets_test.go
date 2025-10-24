@@ -901,7 +901,6 @@ func TestNetworkV4_String(t *testing.T) {
 	if expected != stringified {
 		t.Errorf("NetworkV4.String\n got=%#v\nwant=%#v", stringified, expected)
 	}
-
 }
 
 func TestNetworkV6_String(t *testing.T) {

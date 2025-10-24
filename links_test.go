@@ -179,7 +179,6 @@ func TestLinks_ParseURL(t *testing.T) {
 				lT.url, lT.expectedPageToken, pageToken)
 		}
 	}
-
 }
 
 func TestLinks_ParseEmptyString(t *testing.T) {

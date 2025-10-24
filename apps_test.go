@@ -1372,7 +1372,6 @@ func TestApps_GetJobInvocationLogs(t *testing.T) {
 		assert.Equal(t, "1", r.URL.Query().Get("tail_lines"))
 
 		json.NewEncoder(w).Encode(&AppLogs{LiveURL: "https://logs.example.com/job-invocation"})
-
 	})
 	jobInvocationLogs, _, err := client.Apps.GetJobInvocationLogs(ctx, testApp.ID, testJobInvocation.ID, opts)
 	require.NoError(t, err)

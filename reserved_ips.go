@@ -6,8 +6,10 @@ import (
 	"net/http"
 )
 
-const resourceType = "ReservedIP"
-const reservedIPsBasePath = "v2/reserved_ips"
+const (
+	resourceType        = "ReservedIP"
+	reservedIPsBasePath = "v2/reserved_ips"
+)
 
 // ReservedIPsService is an interface for interfacing with the reserved IPs
 // endpoints of the Digital Ocean API.

@@ -114,8 +114,6 @@ func TestTimeJSON(t *testing.T) {
 			if !test.in.Equal(tm) {
 				t.Fatalf("Mismatch after Unmarshal expected=%v actual=%v", test.in, tm)
 			}
-
 		})
 	}
-
 }

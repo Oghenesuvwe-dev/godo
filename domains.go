@@ -366,7 +366,8 @@ func (s *DomainsServiceOp) EditRecord(ctx context.Context,
 // CreateRecord creates a record using a DomainRecordEditRequest
 func (s *DomainsServiceOp) CreateRecord(ctx context.Context,
 	domain string,
-	createRequest *DomainRecordEditRequest) (*DomainRecord, *Response, error) {
+	createRequest *DomainRecordEditRequest,
+) (*DomainRecord, *Response, error) {
 	if len(domain) < 1 {
 		return nil, nil, NewArgError("domain", "cannot be empty string")
 	}
@@ -377,7 +378,6 @@ func (s *DomainsServiceOp) CreateRecord(ctx context.Context,
 
 	path := fmt.Sprintf("%s/%s/records", domainsBasePath, domain)
 	req, err := s.client.NewRequest(ctx, http.MethodPost, path, createRequest)
-
 	if err != nil {
 		return nil, nil, err
 	}

@@ -112,7 +112,6 @@ func TestBYOIPPrefixes_Create(t *testing.T) {
 	}
 
 	mux.HandleFunc("/v2/byoip_prefixes", func(w http.ResponseWriter, r *http.Request) {
-
 		v := new(BYOIPPrefixCreateReq)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -141,7 +140,6 @@ func TestBYOIPPrefixes_Create(t *testing.T) {
 	if !reflect.DeepEqual(byoipCreated, expectedBYOIP) {
 		t.Errorf("BYOIPs.Create returned %+v, expected %+v", byoipCreated, expectedBYOIP)
 	}
-
 }
 
 func TestBYOIPPrefixes_Delete(t *testing.T) {
@@ -157,7 +155,6 @@ func TestBYOIPPrefixes_Delete(t *testing.T) {
 	if err != nil {
 		t.Errorf("BYOIPs.Delete returned error: %v", err)
 	}
-
 }
 
 func TestBYOIPPrefixes_Update(t *testing.T) {

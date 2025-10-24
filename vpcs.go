@@ -269,5 +269,4 @@ func (v *VPCsServiceOp) ListMembers(ctx context.Context, id string, request *VPC
 	}
 
 	return root.Members, resp, nil
-
 }

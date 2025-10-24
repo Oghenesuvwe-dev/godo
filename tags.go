@@ -124,7 +124,6 @@ type tagRoot struct {
 func (s *TagsServiceOp) List(ctx context.Context, opt *ListOptions) ([]Tag, *Response, error) {
 	path := tagsBasePath
 	path, err := addOptions(path, opt)
-
 	if err != nil {
 		return nil, nil, err
 	}

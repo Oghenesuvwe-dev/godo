@@ -104,7 +104,6 @@ func (c *CertificatesServiceOp) List(ctx context.Context, opt *ListOptions) ([]C
 }
 
 func (c *CertificatesServiceOp) ListByName(ctx context.Context, name string, opt *ListOptions) ([]Certificate, *Response, error) {
-
 	if len(name) < 1 {
 		return nil, nil, NewArgError("name", "cannot be an empty string")
 	}

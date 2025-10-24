@@ -51,7 +51,6 @@ func (r Account) String() string {
 
 // Get DigitalOcean account info
 func (s *AccountServiceOp) Get(ctx context.Context) (*Account, *Response, error) {
-
 	path := "v2/account"
 
 	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
