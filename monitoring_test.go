@@ -1013,9 +1013,10 @@ func TestGetDropletBandwidth(t *testing.T) {
 	defer teardown()
 	now := time.Now()
 	metricReq := &DropletBandwidthMetricsRequest{
-		DropletMetricsRequest: DropletMetricsRequest{HostID: "123",
-			Start: now.Add(-300 * time.Second),
-			End:   now,
+		DropletMetricsRequest: DropletMetricsRequest{
+			HostID: "123",
+			Start:  now.Add(-300 * time.Second),
+			End:    now,
 		},
 		Interface: "private",
 		Direction: "inbound",
@@ -1400,82 +1401,108 @@ func TestGetLoadBalancerMetrics(t *testing.T) {
 	}{
 		{
 			client.Monitoring.GetLoadBalancerFrontendHttpRequestsPerSecond,
-			"/frontend_http_requests_per_second"},
+			"/frontend_http_requests_per_second",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendConnectionsCurrent,
-			"/frontend_connections_current"},
+			"/frontend_connections_current",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendConnectionsLimit,
-			"/frontend_connections_limit"},
+			"/frontend_connections_limit",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendCpuUtilization,
-			"/frontend_cpu_utilization"},
+			"/frontend_cpu_utilization",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendNetworkThroughputHttp,
-			"/frontend_network_throughput_http"},
+			"/frontend_network_throughput_http",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendNetworkThroughputUdp,
-			"/frontend_network_throughput_udp"},
+			"/frontend_network_throughput_udp",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendNetworkThroughputTcp,
-			"/frontend_network_throughput_tcp"},
+			"/frontend_network_throughput_tcp",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendNlbTcpNetworkThroughput,
-			"/frontend_nlb_tcp_network_throughput"},
+			"/frontend_nlb_tcp_network_throughput",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendNlbUdpNetworkThroughput,
-			"/frontend_nlb_udp_network_throughput"},
+			"/frontend_nlb_udp_network_throughput",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendFirewallDroppedBytes,
-			"/frontend_firewall_dropped_bytes"},
+			"/frontend_firewall_dropped_bytes",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendFirewallDroppedPackets,
-			"/frontend_firewall_dropped_packets"},
+			"/frontend_firewall_dropped_packets",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendHttpResponses,
-			"/frontend_http_responses"},
+			"/frontend_http_responses",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendTlsConnectionsCurrent,
-			"/frontend_tls_connections_current"},
+			"/frontend_tls_connections_current",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendTlsConnectionsLimit,
-			"/frontend_tls_connections_limit"},
+			"/frontend_tls_connections_limit",
+		},
 		{
 			client.Monitoring.GetLoadBalancerFrontendTlsConnectionsExceedingRateLimit,
-			"/frontend_tls_connections_exceeding_rate_limit"},
+			"/frontend_tls_connections_exceeding_rate_limit",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpSessionDurationAvg,
-			"/droplets_http_session_duration_avg"},
+			"/droplets_http_session_duration_avg",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpSessionDuration50P,
-			"/droplets_http_session_duration_50p"},
+			"/droplets_http_session_duration_50p",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpSessionDuration95P,
-			"/droplets_http_session_duration_95p"},
+			"/droplets_http_session_duration_95p",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpResponseTimeAvg,
-			"/droplets_http_response_time_avg"},
+			"/droplets_http_response_time_avg",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpResponseTime50P,
-			"/droplets_http_response_time_50p"},
+			"/droplets_http_response_time_50p",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpResponseTime95P,
-			"/droplets_http_response_time_95p"},
+			"/droplets_http_response_time_95p",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpResponseTime99P,
-			"/droplets_http_response_time_99p"},
+			"/droplets_http_response_time_99p",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsQueueSize,
-			"/droplets_queue_size"},
+			"/droplets_queue_size",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHttpResponses,
-			"/droplets_http_responses"},
+			"/droplets_http_responses",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsConnections,
-			"/droplets_connections"},
+			"/droplets_connections",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsHealthChecks,
-			"/droplets_health_checks"},
+			"/droplets_health_checks",
+		},
 		{
 			client.Monitoring.GetLoadBalancerDropletsDowntime,
 			"/droplets_downtime",

@@ -1230,7 +1230,6 @@ func TestKubernetesClusters_ListAssociatedResourcesForDeletion(t *testing.T) {
 	ar, _, err := kubeSvc.ListAssociatedResourcesForDeletion(ctx, "deadbeef-dead-4aa5-beef-deadbeef347d")
 	require.NoError(t, err)
 	require.Equal(t, expectedRes, ar)
-
 }
 
 func TestKubernetesClusters_CreateNodePool(t *testing.T) {
@@ -1441,7 +1440,6 @@ func TestKubernetesClusters_GetNodePoolTemplate(t *testing.T) {
 	got, _, err := kubeSvc.GetNodePoolTemplate(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8a", "pool-a")
 	require.NoError(t, err)
 	require.Equal(t, want, got)
-
 }
 
 func TestKubernetesClusters_ListNodePools(t *testing.T) {
@@ -1919,7 +1917,6 @@ func TestKubernetesRunClusterlint_WithRequestBody(t *testing.T) {
 	runID, _, err := kubeSvc.RunClusterlint(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", request)
 	require.NoError(t, err)
 	assert.Equal(t, want, runID)
-
 }
 
 func TestKubernetesRunClusterlint_WithoutRequestBody(t *testing.T) {
@@ -1948,7 +1945,6 @@ func TestKubernetesRunClusterlint_WithoutRequestBody(t *testing.T) {
 	runID, _, err := kubeSvc.RunClusterlint(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", &KubernetesRunClusterlintRequest{})
 	require.NoError(t, err)
 	assert.Equal(t, want, runID)
-
 }
 
 func TestKubernetesClusterStatusMessages(t *testing.T) {
@@ -2039,7 +2035,6 @@ func TestKubernetesGetClusterlint_WithRunID(t *testing.T) {
 	diagnostics, _, err := kubeSvc.GetClusterlintResults(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", r)
 	require.NoError(t, err)
 	assert.Equal(t, expected, diagnostics)
-
 }
 
 func TestKubernetesGetClusterlint_WithoutRunID(t *testing.T) {
@@ -2090,7 +2085,6 @@ func TestKubernetesGetClusterlint_WithoutRunID(t *testing.T) {
 	diagnostics, _, err := kubeSvc.GetClusterlintResults(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", r)
 	require.NoError(t, err)
 	assert.Equal(t, expected, diagnostics)
-
 }
 
 var maintenancePolicyDayTests = []struct {

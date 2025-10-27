@@ -762,7 +762,6 @@ func (s *GenAIServiceOp) CreateAgent(ctx context.Context, create *AgentCreateReq
 
 	root := new(genAIAgentRoot)
 	resp, err := s.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, resp, err
 	}
@@ -941,7 +940,6 @@ func (s *GenAIServiceOp) UpdateAgentVisibility(ctx context.Context, id string, u
 
 // List all knowledge bases
 func (s *GenAIServiceOp) ListKnowledgeBases(ctx context.Context, opt *ListOptions) ([]KnowledgeBase, *Response, error) {
-
 	path := KnowledgeBasePath
 	path, err := addOptions(path, opt)
 	if err != nil {
@@ -1060,7 +1058,6 @@ func (s *GenAIServiceOp) CancelIndexingJob(ctx context.Context, indexingJobUUID 
 
 // Create a knowledge base
 func (s *GenAIServiceOp) CreateKnowledgeBase(ctx context.Context, knowledgeBaseCreate *KnowledgeBaseCreateRequest) (*KnowledgeBase, *Response, error) {
-
 	path := KnowledgeBasePath
 
 	if knowledgeBaseCreate.Name == "" {
@@ -1092,7 +1089,6 @@ func (s *GenAIServiceOp) CreateKnowledgeBase(ctx context.Context, knowledgeBaseC
 	}
 	root := new(knowledgebaseRoot)
 	resp, err := s.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, resp, err
 	}
@@ -1102,7 +1098,6 @@ func (s *GenAIServiceOp) CreateKnowledgeBase(ctx context.Context, knowledgeBaseC
 
 // List Data Sources for a Knowledge Base
 func (s *GenAIServiceOp) ListKnowledgeBaseDataSources(ctx context.Context, knowledgeBaseID string, opt *ListOptions) ([]KnowledgeBaseDataSource, *Response, error) {
-
 	path := fmt.Sprintf(KnowledgeBaseDataSourcesPath, knowledgeBaseID)
 	path, err := addOptions(path, opt)
 	if err != nil {
@@ -1143,10 +1138,8 @@ func (s *GenAIServiceOp) AddKnowledgeBaseDataSource(ctx context.Context, knowled
 
 // Deletes data source from a knowledge base
 func (s *GenAIServiceOp) DeleteKnowledgeBaseDataSource(ctx context.Context, knowledgeBaseID string, dataSourceID string) (string, string, *Response, error) {
-
 	path := fmt.Sprintf(DeleteDataSourcePath, knowledgeBaseID, dataSourceID)
 	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-
 	if err != nil {
 		return "", "", nil, err
 	}
@@ -1155,7 +1148,6 @@ func (s *GenAIServiceOp) DeleteKnowledgeBaseDataSource(ctx context.Context, know
 	resp, err := s.client.Do(ctx, req, root)
 	if err != nil {
 		return "", "", resp, err
-
 	}
 	return root.KnowledgeBaseUuid, root.DataSourceUuid, resp, nil
 }
@@ -1165,13 +1157,11 @@ func (s *GenAIServiceOp) DeleteKnowledgeBaseDataSource(ctx context.Context, know
 func (s *GenAIServiceOp) GetKnowledgeBase(ctx context.Context, knowledgeBaseID string) (*KnowledgeBase, string, *Response, error) {
 	path := fmt.Sprintf(GetKnowledgeBaseByIDPath, knowledgeBaseID)
 	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
-
 	if err != nil {
 		return nil, "", nil, err
 	}
 	root := new(knowledgebaseRoot)
 	resp, err := s.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, "", resp, err
 	}
@@ -1197,7 +1187,6 @@ func (s *GenAIServiceOp) UpdateKnowledgeBase(ctx context.Context, knowledgeBaseI
 
 // Deletes a knowledge base by its corresponding UUID and returns the UUID of the deleted knowledge base
 func (s *GenAIServiceOp) DeleteKnowledgeBase(ctx context.Context, knowledgeBaseID string) (string, *Response, error) {
-
 	path := fmt.Sprintf(DeleteKnowledgeBaseByIDPath, knowledgeBaseID)
 	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
 	fmt.Print(path)
@@ -1206,7 +1195,6 @@ func (s *GenAIServiceOp) DeleteKnowledgeBase(ctx context.Context, knowledgeBaseI
 	}
 	root := new(DeleteKnowledgeBaseRoot)
 	resp, err := s.client.Do(ctx, req, root)
-
 	if err != nil {
 		return "", resp, err
 	}
@@ -1215,7 +1203,6 @@ func (s *GenAIServiceOp) DeleteKnowledgeBase(ctx context.Context, knowledgeBaseI
 
 // Attach a knowledge base to an agent
 func (s *GenAIServiceOp) AttachKnowledgeBaseToAgent(ctx context.Context, agentID string, knowledgeBaseID string) (*Agent, *Response, error) {
-
 	path := fmt.Sprintf(AgentKnowledgeBasePath, agentID, knowledgeBaseID)
 	req, err := s.client.NewRequest(ctx, http.MethodPost, path, nil)
 	if err != nil {
@@ -1233,7 +1220,6 @@ func (s *GenAIServiceOp) AttachKnowledgeBaseToAgent(ctx context.Context, agentID
 
 // Detach a knowledge base from an agent
 func (s *GenAIServiceOp) DetachKnowledgeBaseToAgent(ctx context.Context, agentID string, knowledgeBaseID string) (*Agent, *Response, error) {
-
 	path := fmt.Sprintf(AgentKnowledgeBasePath, agentID, knowledgeBaseID)
 
 	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
@@ -1636,7 +1622,6 @@ func (g *GenAIServiceOp) CreateFunctionRoute(ctx context.Context, id string, cre
 
 	root := new(genAIAgentRoot)
 	resp, err := g.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, resp, err
 	}
@@ -1654,7 +1639,6 @@ func (g *GenAIServiceOp) DeleteFunctionRoute(ctx context.Context, agent_id strin
 
 	root := new(genAIAgentRoot)
 	resp, err := g.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, resp, err
 	}
@@ -1672,7 +1656,6 @@ func (g *GenAIServiceOp) UpdateFunctionRoute(ctx context.Context, agent_id strin
 
 	root := new(genAIAgentRoot)
 	resp, err := g.client.Do(ctx, req, root)
-
 	if err != nil {
 		return nil, resp, err
 	}

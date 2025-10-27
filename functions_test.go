@@ -270,7 +270,6 @@ func TestFunctions_GetTrigger(t *testing.T) {
 				}
 			}	
 		}`)
-
 	})
 
 	trigger, _, err := client.Functions.GetTrigger(ctx, "123-456", "my-trigger")
@@ -295,7 +294,6 @@ func TestFunctions_GetTrigger(t *testing.T) {
 		},
 	}
 	assert.Equal(t, expectedTrigger, trigger)
-
 }
 
 func TestFunctions_CreateTrigger(t *testing.T) {
