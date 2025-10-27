@@ -771,7 +771,7 @@ func (s *GenAIServiceOp) CreateAgent(ctx context.Context, create *AgentCreateReq
 }
 
 // ListAgentAPIKeys retrieves list of API Keys associated with the specified GenAI agent
-func (s *GenAIServiceOp) ListAgentAPIKeys(ctx context.Context, agentId string, opt *ListOptions) ([]*ApiKeyInfo, *Response, error) {
+func (s *GenAIServiceOp) ListAgentAPIKeys(ctx context.Context, agentId string, _ *ListOptions) ([]*ApiKeyInfo, *Response, error) {
 	path := fmt.Sprintf("%s/%s/api_keys", genAIBasePath, agentId)
 	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)
 	if err != nil {

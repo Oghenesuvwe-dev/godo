@@ -377,7 +377,7 @@ func TestTags_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/tags/testing-1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -398,7 +398,7 @@ func TestTags_TagResource(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc("/v2/tags/testing-1/resources", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1/resources", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(TagResourcesRequest)
 
 		err := json.NewDecoder(r.Body).Decode(v)
@@ -430,7 +430,7 @@ func TestTags_UntagResource(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc("/v2/tags/testing-1/resources", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1/resources", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(UntagResourcesRequest)
 
 		err := json.NewDecoder(r.Body).Decode(v)

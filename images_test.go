@@ -392,7 +392,7 @@ func TestImages_Destroy(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/images/12345", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/images/12345", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

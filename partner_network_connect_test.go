@@ -443,7 +443,7 @@ func TestPartnerAttachment_Delete(t *testing.T) {
 	path := "/v2/partner_network_connect/attachments"
 	id := "880b7f98-f062-404d-b33c-458d545696f6"
 
-	mux.HandleFunc(path+"/"+id, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path+"/"+id, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

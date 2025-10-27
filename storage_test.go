@@ -525,7 +525,7 @@ func TestStorageVolumes_Destroy(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/volumes/80d414c6-295e-4e3a-ac58-eb9456c1e1d1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/volumes/80d414c6-295e-4e3a-ac58-eb9456c1e1d1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -708,7 +708,7 @@ func TestStorageSnapshots_Destroy(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/snapshots/80d414c6-295e-4e3a-ac58-eb9456c1e1d1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/snapshots/80d414c6-295e-4e3a-ac58-eb9456c1e1d1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

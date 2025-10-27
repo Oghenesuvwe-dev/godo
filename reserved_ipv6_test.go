@@ -133,7 +133,7 @@ func TestReservedIPV6s_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/reserved_ipv6/2604:a880:800:14::42c3:d001", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/reserved_ipv6/2604:a880:800:14::42c3:d001", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

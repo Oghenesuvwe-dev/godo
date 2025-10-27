@@ -413,7 +413,7 @@ func TestApps_DeleteApp(t *testing.T) {
 
 	ctx := context.Background()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/apps/%s", testApp.ID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/apps/%s", testApp.ID), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

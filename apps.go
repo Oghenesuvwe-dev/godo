@@ -803,7 +803,7 @@ func (s *AppsServiceOp) ToggleDatabaseTrustedSource(
 
 // GetAppInstances returns a list of emphemeral compute instances of the current deployment for an app.
 // opts is reserved for future use.
-func (s *AppsServiceOp) GetAppInstances(ctx context.Context, appID string, opts *GetAppInstancesOpts) ([]*AppInstance, *Response, error) {
+func (s *AppsServiceOp) GetAppInstances(ctx context.Context, appID string, _ *GetAppInstancesOpts) ([]*AppInstance, *Response, error) {
 	path := fmt.Sprintf("%s/%s/instances", appsBasePath, appID)
 
 	req, err := s.client.NewRequest(ctx, http.MethodGet, path, nil)

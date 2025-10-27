@@ -482,7 +482,7 @@ func TestFirewalls_Delete(t *testing.T) {
 	urlStr := "/v2/firewalls"
 	fID := "fe6b88f2-b42b-4bf7-bbd3-5ae20208f0b0"
 	urlStr = path.Join(urlStr, fID)
-	mux.HandleFunc(urlStr, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(urlStr, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

@@ -145,7 +145,7 @@ func TestNewFromToken_cleaned(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/foo", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/foo", func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	})
 
@@ -359,7 +359,7 @@ func TestDo_httpError(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		http.Error(w, "Bad Request", 400)
 	})
 
@@ -496,7 +496,7 @@ func TestDo_rateLimit(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Add(headerRateLimit, "60")
 		w.Header().Add(headerRateRemaining, "59")
 		w.Header().Add(headerRateReset, "1372700873")
@@ -542,7 +542,7 @@ func TestDo_rateLimitRace(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Add(headerRateLimit, "60")
 		w.Header().Add(headerRateRemaining, "59")
 		w.Header().Add(headerRateReset, "1372700873")
@@ -582,7 +582,7 @@ func TestDo_rateLimit_errorResponse(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Add(headerRateLimit, "60")
 		w.Header().Add(headerRateRemaining, "59")
 		w.Header().Add(headerRateReset, "1372700873")
@@ -613,7 +613,7 @@ func TestWithRetryAndBackoffs(t *testing.T) {
 	defer teardown()
 
 	url, _ := url.Parse(server.URL)
-	mux.HandleFunc("/foo", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/foo", func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(`{"id": "bad_request", "message": "broken"}`))
 	})
@@ -660,7 +660,7 @@ func TestWithRetryAndBackoffsLogger(t *testing.T) {
 	defer teardown()
 
 	url, _ := url.Parse(server.URL)
-	mux.HandleFunc("/foo", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/foo", func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusAccepted)
 	})
 
@@ -707,7 +707,7 @@ func TestWithRetryAndBackoffsForResourceMethods(t *testing.T) {
 	defer teardown()
 
 	url, _ := url.Parse(server.URL)
-	mux.HandleFunc("/v2/account", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/account", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Add(headerRateLimit, "500")
 		w.Header().Add(headerRateRemaining, "42")
 		w.Header().Add(headerRateReset, "1372700873")

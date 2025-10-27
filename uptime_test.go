@@ -279,7 +279,7 @@ func TestUptimeChecks_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/uptime/checks/check-1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/uptime/checks/check-1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -293,7 +293,7 @@ func TestUptimeAlert_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/uptime/checks/check-1/alerts/alert-1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/uptime/checks/check-1/alerts/alert-1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

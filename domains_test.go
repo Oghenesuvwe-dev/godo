@@ -142,7 +142,7 @@ func TestDomains_Destroy(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/domains/example.com", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/domains/example.com", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -362,7 +362,7 @@ func TestDomains_DeleteRecordForDomainName(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/domains/example.com/records/1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/domains/example.com/records/1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

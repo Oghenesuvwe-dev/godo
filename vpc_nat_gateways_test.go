@@ -385,7 +385,7 @@ func TestVPCNATGateways_Delete(t *testing.T) {
 	defer teardown()
 
 	gatewayID := "97c46619-1f53-493b-8638-00c899f30152"
-	mux.HandleFunc(fmt.Sprintf("%s/%s", vpcNatGatewaysBasePath, gatewayID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("%s/%s", vpcNatGatewaysBasePath, gatewayID), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
