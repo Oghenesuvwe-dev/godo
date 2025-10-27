@@ -482,12 +482,11 @@ func TestFirewalls_Delete(t *testing.T) {
 	urlStr := "/v2/firewalls"
 	fID := "fe6b88f2-b42b-4bf7-bbd3-5ae20208f0b0"
 	urlStr = path.Join(urlStr, fID)
-	mux.HandleFunc(urlStr, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(urlStr, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
 	_, err := client.Firewalls.Delete(ctx, fID)
-
 	if err != nil {
 		t.Errorf("Firewalls.Delete returned error: %v", err)
 	}
@@ -503,7 +502,6 @@ func TestFirewalls_List(t *testing.T) {
 	})
 
 	actualFirewalls, resp, err := client.Firewalls.List(ctx, nil)
-
 	if err != nil {
 		t.Errorf("Firewalls.List returned error: %v", err)
 	}
@@ -528,7 +526,6 @@ func TestFirewalls_ListByDroplet(t *testing.T) {
 	})
 
 	actualFirewalls, resp, err := client.Firewalls.ListByDroplet(ctx, 123, nil)
-
 	if err != nil {
 		t.Errorf("Firewalls.List returned error: %v", err)
 	}
@@ -576,7 +573,6 @@ func TestFirewalls_AddDroplets(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.AddDroplets(ctx, fID, dRequest.IDs...)
-
 	if err != nil {
 		t.Errorf("Firewalls.AddDroplets returned error: %v", err)
 	}
@@ -615,7 +611,6 @@ func TestFirewalls_RemoveDroplets(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.RemoveDroplets(ctx, fID, dRequest.IDs...)
-
 	if err != nil {
 		t.Errorf("Firewalls.RemoveDroplets returned error: %v", err)
 	}
@@ -653,7 +648,6 @@ func TestFirewalls_AddTags(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.AddTags(ctx, fID, tRequest.Tags...)
-
 	if err != nil {
 		t.Errorf("Firewalls.AddTags returned error: %v", err)
 	}
@@ -691,7 +685,6 @@ func TestFirewalls_RemoveTags(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.RemoveTags(ctx, fID, tRequest.Tags...)
-
 	if err != nil {
 		t.Errorf("Firewalls.RemoveTags returned error: %v", err)
 	}
@@ -746,7 +739,6 @@ func TestFirewalls_AddRules(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.AddRules(ctx, fID, rr)
-
 	if err != nil {
 		t.Errorf("Firewalls.AddRules returned error: %v", err)
 	}
@@ -801,7 +793,6 @@ func TestFirewalls_RemoveRules(t *testing.T) {
 	})
 
 	_, err := client.Firewalls.RemoveRules(ctx, fID, rr)
-
 	if err != nil {
 		t.Errorf("Firewalls.RemoveRules returned error: %v", err)
 	}

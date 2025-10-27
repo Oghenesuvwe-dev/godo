@@ -177,7 +177,7 @@ func TestVPCPeering_Delete(t *testing.T) {
 	path := "/v2/vpc_peerings"
 	id := "f5a0c5e4-7537-47de-bb8d-46c766f89ffb"
 
-	mux.HandleFunc(path+"/"+id, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path+"/"+id, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

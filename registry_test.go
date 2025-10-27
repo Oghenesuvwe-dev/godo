@@ -139,7 +139,7 @@ func TestRegistry_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/registry", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/registry", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -441,7 +441,7 @@ func TestRegistry_DeleteTag(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/registry/%s/repositories/%s/tags/%s", testRegistry, testEncodedRepository, testTag), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/registry/%s/repositories/%s/tags/%s", testRegistry, testEncodedRepository, testTag), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -541,7 +541,7 @@ func TestRegistry_DeleteManifest(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/registry/%s/repositories/%s/digests/%s", testRegistry, testEncodedRepository, testDigest), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/registry/%s/repositories/%s/digests/%s", testRegistry, testEncodedRepository, testDigest), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -951,7 +951,7 @@ func TestRegistry_ValidateName(t *testing.T) {
 		Name: testRegistry,
 	}
 
-	mux.HandleFunc("/v2/registry/validate-name", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/registry/validate-name", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(RegistryValidateNameRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -1040,7 +1040,7 @@ func TestRegistries_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s", testRegistry), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s", testRegistry), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1328,7 +1328,7 @@ func TestRegistries_DeleteTag(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s/repositories/%s/tags/%s", testRegistry, testEncodedRepository, testTag), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s/repositories/%s/tags/%s", testRegistry, testEncodedRepository, testTag), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1428,7 +1428,7 @@ func TestRegistries_DeleteManifest(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s/repositories/%s/digests/%s", testRegistry, testEncodedRepository, testDigest), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/registries/%s/repositories/%s/digests/%s", testRegistry, testEncodedRepository, testDigest), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1827,7 +1827,7 @@ func TestRegistries_ValidateName(t *testing.T) {
 		Name: testRegistry,
 	}
 
-	mux.HandleFunc("/v2/registries/validate-name", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/registries/validate-name", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(RegistryValidateNameRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {

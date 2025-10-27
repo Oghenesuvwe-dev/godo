@@ -326,7 +326,6 @@ func TestTags_Get(t *testing.T) {
 	assertStringTagEqual(t, tag.Resources.VolumeSnapshots.LastTaggedURI, "https://api.digitalocean.com/v2/snapshots/1", fmt.Sprintf("Tags.Get return an incorrect last tagged volume snapshot uri %+v, expected %+v", tag.Resources.VolumeSnapshots.LastTaggedURI, "https://api.digitalocean.com/v2/snapshots/1"))
 	assertIntTagEqual(t, tag.Resources.Databases.Count, 1, fmt.Sprintf("Tags.Get return an incorrect database resource count, got %+v, expected %+v", tag.Resources.Databases.Count, 1))
 	assertStringTagEqual(t, tag.Resources.Databases.LastTaggedURI, "https://api.digitalocean.com/v2/databases/1", fmt.Sprintf("Tags.Get return an incorrect last tagged database uri %+v, expected %+v", tag.Resources.Databases.LastTaggedURI, "https://api.digitalocean.com/v2/databases/1"))
-
 }
 
 func TestTags_Create(t *testing.T) {
@@ -377,7 +376,7 @@ func TestTags_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/tags/testing-1", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -398,7 +397,7 @@ func TestTags_TagResource(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc("/v2/tags/testing-1/resources", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1/resources", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(TagResourcesRequest)
 
 		err := json.NewDecoder(r.Body).Decode(v)
@@ -410,7 +409,6 @@ func TestTags_TagResource(t *testing.T) {
 		if !reflect.DeepEqual(v, tagResourcesRequest) {
 			t.Errorf("Request body = %+v, expected %+v", v, tagResourcesRequest)
 		}
-
 	})
 
 	_, err := client.Tags.TagResources(ctx, "testing-1", tagResourcesRequest)
@@ -430,7 +428,7 @@ func TestTags_UntagResource(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc("/v2/tags/testing-1/resources", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/tags/testing-1/resources", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(UntagResourcesRequest)
 
 		err := json.NewDecoder(r.Body).Decode(v)
@@ -442,7 +440,6 @@ func TestTags_UntagResource(t *testing.T) {
 		if !reflect.DeepEqual(v, untagResourcesRequest) {
 			t.Errorf("Request body = %+v, expected %+v", v, untagResourcesRequest)
 		}
-
 	})
 
 	_, err := client.Tags.UntagResources(ctx, "testing-1", untagResourcesRequest)

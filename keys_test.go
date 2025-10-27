@@ -242,7 +242,7 @@ func TestKeys_DestroyByID(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/account/keys/12345", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/account/keys/12345", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -256,7 +256,7 @@ func TestKeys_DestroyByFingerprint(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/account/keys/aa:bb:cc", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/account/keys/aa:bb:cc", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

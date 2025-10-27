@@ -789,7 +789,7 @@ func TestDatabases_Delete(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -810,7 +810,7 @@ func TestDatabases_Resize(t *testing.T) {
 	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 	path := fmt.Sprintf("/v2/databases/%s/resize", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -830,7 +830,7 @@ func TestDatabases_Migrate(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/migrate", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -851,7 +851,7 @@ func TestDatabases_Migrate_WithPrivateNet(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/migrate", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -872,7 +872,7 @@ func TestDatabases_UpdateMaintenance(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/maintenance", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -888,7 +888,7 @@ func TestDatabases_InstallUpdate(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/install_update", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -1170,7 +1170,7 @@ func TestDatabases_DeleteUser(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/users/user", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1211,7 +1211,8 @@ func TestDatabases_ResetUserAuth(t *testing.T) {
 	got, _, err := client.Databases.ResetUserAuth(ctx, dbID, "user", &DatabaseResetUserAuthRequest{
 		MySQLSettings: &DatabaseMySQLUserSettings{
 			AuthPlugin: SQLAuthPluginCachingSHA2,
-		}})
+		},
+	})
 
 	require.NoError(t, err)
 	require.Equal(t, want, got)
@@ -1708,7 +1709,7 @@ func TestDatabases_DeletePool(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/pools/pool", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1724,7 +1725,7 @@ func TestDatabases_UpdatePool(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/pools/pool", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -1999,7 +2000,7 @@ func TestDatabases_PromoteReplicaToPrimary(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/replicas/replica/promote", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -2015,7 +2016,7 @@ func TestDatabases_DeleteReplica(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/replicas/replica", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -2031,7 +2032,7 @@ func TestDatabases_SetEvictionPolicy(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/eviction_policy", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -2159,7 +2160,7 @@ func TestDatabases_UpdateFirewallRules(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/firewall", dbID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -3664,7 +3665,7 @@ func TestDatabases_DeleteTopic(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/topics/%s", dbID, topicName)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -3946,7 +3947,7 @@ func TestDatabases_UpdateMetricsCredentials(t *testing.T) {
 		},
 	}
 
-	mux.HandleFunc("/v2/databases/metrics/credentials", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/databases/metrics/credentials", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodPut)
 	})
 
@@ -4066,7 +4067,7 @@ func TestDatabases_DeleteIndexes(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/indexes/%s", dbID, indexName)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -4078,9 +4079,7 @@ func TestDatabases_CreateLogsink(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	want := &DatabaseLogsink{
 		ID:   "deadbeef-dead-4aa5-beef-deadbeef347d",
@@ -4261,9 +4260,7 @@ func TestDatabases_ListLogsinks(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	want := []DatabaseLogsink{
 		{
@@ -4283,7 +4280,8 @@ func TestDatabases_ListLogsinks(t *testing.T) {
 				URL:         "https://user:passwd@192.168.0.1:25060",
 				IndexPrefix: "opensearch-logs",
 			},
-		}}
+		},
+	}
 
 	body := `{
 		"sinks": [
@@ -4331,7 +4329,7 @@ func TestDatabases_DeleteLogsink(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/logsink/%s", dbID, logsinkID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -4343,9 +4341,7 @@ func TestDatabases_StartOnlineMigration(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	body := `{
 		"source": {
@@ -4390,9 +4386,7 @@ func TestDatabases_GetOnlineMigrationStatus(t *testing.T) {
 	setup()
 	defer teardown()
 
-	var (
-		dbID = "deadbeef-dead-4aa5-beef-deadbeef347d"
-	)
+	dbID := "deadbeef-dead-4aa5-beef-deadbeef347d"
 
 	body := `{
 		"source": {
@@ -4431,7 +4425,7 @@ func TestDatabases_StopOnlineMigration(t *testing.T) {
 
 	path := fmt.Sprintf("/v2/databases/%s/online-migration/%s", dbID, migrationID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

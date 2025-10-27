@@ -1096,7 +1096,7 @@ func TestKubernetesClusters_Upgrade(t *testing.T) {
 		VersionSlug: "1.12.3-do.2",
 	}
 
-	mux.HandleFunc("/v2/kubernetes/clusters/8d91899c-0739-4a1a-acc5-deadbeefbb8f/upgrade", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/8d91899c-0739-4a1a-acc5-deadbeefbb8f/upgrade", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(KubernetesClusterUpgradeRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -1117,7 +1117,7 @@ func TestKubernetesClusters_Destroy(t *testing.T) {
 
 	kubeSvc := client.Kubernetes
 
-	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1131,7 +1131,7 @@ func TestKubernetesClusters_DeleteDangerous(t *testing.T) {
 
 	kubeSvc := client.Kubernetes
 
-	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/destroy_with_associated_resources/dangerous", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/destroy_with_associated_resources/dangerous", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1154,7 +1154,7 @@ func TestKubernetesClusters_DeleteSelective(t *testing.T) {
 	expectedReqJSON := `{"volumes":["2241"],"volume_snapshots":["7258"],"load_balancers":["9873"]}
 `
 
-	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/destroy_with_associated_resources/selective", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/destroy_with_associated_resources/selective", func(_ http.ResponseWriter, r *http.Request) {
 		buf := new(bytes.Buffer)
 		buf.ReadFrom(r.Body)
 		require.Equal(t, expectedReqJSON, buf.String())
@@ -1230,7 +1230,6 @@ func TestKubernetesClusters_ListAssociatedResourcesForDeletion(t *testing.T) {
 	ar, _, err := kubeSvc.ListAssociatedResourcesForDeletion(ctx, "deadbeef-dead-4aa5-beef-deadbeef347d")
 	require.NoError(t, err)
 	require.Equal(t, expectedRes, ar)
-
 }
 
 func TestKubernetesClusters_CreateNodePool(t *testing.T) {
@@ -1441,7 +1440,6 @@ func TestKubernetesClusters_GetNodePoolTemplate(t *testing.T) {
 	got, _, err := kubeSvc.GetNodePoolTemplate(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8a", "pool-a")
 	require.NoError(t, err)
 	require.Equal(t, want, got)
-
 }
 
 func TestKubernetesClusters_ListNodePools(t *testing.T) {
@@ -1695,7 +1693,7 @@ func TestKubernetesClusters_DeleteNodePool(t *testing.T) {
 
 	kubeSvc := client.Kubernetes
 
-	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1709,7 +1707,7 @@ func TestKubernetesClusters_DeleteNode(t *testing.T) {
 		defer teardown()
 		kubeSvc := client.Kubernetes
 
-		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(_ http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodDelete)
 			require.Equal(t, "", r.URL.Query().Encode())
 		})
@@ -1723,7 +1721,7 @@ func TestKubernetesClusters_DeleteNode(t *testing.T) {
 		defer teardown()
 		kubeSvc := client.Kubernetes
 
-		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(_ http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodDelete)
 			require.Equal(t, "skip_drain=1", r.URL.Query().Encode())
 		})
@@ -1739,7 +1737,7 @@ func TestKubernetesClusters_DeleteNode(t *testing.T) {
 		defer teardown()
 		kubeSvc := client.Kubernetes
 
-		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(w http.ResponseWriter, r *http.Request) {
+		mux.HandleFunc("/v2/kubernetes/clusters/deadbeef-dead-4aa5-beef-deadbeef347d/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/nodes/8d91899c-node-4a1a-acc5-deadbeefbb8a", func(_ http.ResponseWriter, r *http.Request) {
 			testMethod(t, r, http.MethodDelete)
 			require.Equal(t, "replace=1", r.URL.Query().Encode())
 		})
@@ -1761,7 +1759,7 @@ func TestKubernetesClusters_RecycleNodePoolNodes(t *testing.T) {
 		Nodes: []string{"node1", "node2"},
 	}
 
-	mux.HandleFunc("/v2/kubernetes/clusters/8d91899c-0739-4a1a-acc5-deadbeefbb8f/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/recycle", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/clusters/8d91899c-0739-4a1a-acc5-deadbeefbb8f/node_pools/8d91899c-nodepool-4a1a-acc5-deadbeefbb8a/recycle", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(KubernetesNodePoolRecycleNodesRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -1852,7 +1850,7 @@ func TestKubernetesClusterRegistry_Add(t *testing.T) {
 		ClusterUUIDs: []string{"8d91899c-0739-4a1a-acc5-deadbeefbb8f"},
 	}
 
-	mux.HandleFunc("/v2/kubernetes/registry", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/registry", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(KubernetesClusterRegistryRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -1877,7 +1875,7 @@ func TestKubernetesClusterRegistry_Remove(t *testing.T) {
 		ClusterUUIDs: []string{"8d91899c-0739-4a1a-acc5-deadbeefbb8f"},
 	}
 
-	mux.HandleFunc("/v2/kubernetes/registry", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/kubernetes/registry", func(_ http.ResponseWriter, r *http.Request) {
 		v := new(KubernetesClusterRegistryRequest)
 		err := json.NewDecoder(r.Body).Decode(v)
 		if err != nil {
@@ -1919,7 +1917,6 @@ func TestKubernetesRunClusterlint_WithRequestBody(t *testing.T) {
 	runID, _, err := kubeSvc.RunClusterlint(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", request)
 	require.NoError(t, err)
 	assert.Equal(t, want, runID)
-
 }
 
 func TestKubernetesRunClusterlint_WithoutRequestBody(t *testing.T) {
@@ -1948,7 +1945,6 @@ func TestKubernetesRunClusterlint_WithoutRequestBody(t *testing.T) {
 	runID, _, err := kubeSvc.RunClusterlint(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", &KubernetesRunClusterlintRequest{})
 	require.NoError(t, err)
 	assert.Equal(t, want, runID)
-
 }
 
 func TestKubernetesClusterStatusMessages(t *testing.T) {
@@ -2039,7 +2035,6 @@ func TestKubernetesGetClusterlint_WithRunID(t *testing.T) {
 	diagnostics, _, err := kubeSvc.GetClusterlintResults(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", r)
 	require.NoError(t, err)
 	assert.Equal(t, expected, diagnostics)
-
 }
 
 func TestKubernetesGetClusterlint_WithoutRunID(t *testing.T) {
@@ -2090,7 +2085,6 @@ func TestKubernetesGetClusterlint_WithoutRunID(t *testing.T) {
 	diagnostics, _, err := kubeSvc.GetClusterlintResults(ctx, "8d91899c-0739-4a1a-acc5-deadbeefbb8f", r)
 	require.NoError(t, err)
 	assert.Equal(t, expected, diagnostics)
-
 }
 
 var maintenancePolicyDayTests = []struct {

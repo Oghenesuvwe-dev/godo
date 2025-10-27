@@ -413,7 +413,7 @@ func TestApps_DeleteApp(t *testing.T) {
 
 	ctx := context.Background()
 
-	mux.HandleFunc(fmt.Sprintf("/v2/apps/%s", testApp.ID), func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(fmt.Sprintf("/v2/apps/%s", testApp.ID), func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1372,7 +1372,6 @@ func TestApps_GetJobInvocationLogs(t *testing.T) {
 		assert.Equal(t, "1", r.URL.Query().Get("tail_lines"))
 
 		json.NewEncoder(w).Encode(&AppLogs{LiveURL: "https://logs.example.com/job-invocation"})
-
 	})
 	jobInvocationLogs, _, err := client.Apps.GetJobInvocationLogs(ctx, testApp.ID, testJobInvocation.ID, opts)
 	require.NoError(t, err)

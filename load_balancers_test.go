@@ -1200,7 +1200,7 @@ func TestLoadBalancers_Delete(t *testing.T) {
 	lbID := "37e6be88-01ec-4ec7-9bc6-a514d4719057"
 	path := "/v2/load_balancers"
 	path = fmt.Sprintf("%s/%s", path, lbID)
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -1507,7 +1507,7 @@ func TestLoadBalancers_PurgeCache(t *testing.T) {
 	path := "/v2/load_balancers"
 	endpoint := "cache"
 	path = fmt.Sprintf("%s/%s/%s", path, lbID, endpoint)
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

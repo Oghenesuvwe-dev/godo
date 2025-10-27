@@ -283,7 +283,7 @@ func TestCDN_DeleteCDN(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/cdn/endpoints/12345", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/cdn/endpoints/12345", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -421,7 +421,7 @@ func TestCDN_FluchCacheCDN(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/cdn/endpoints/12345/cache", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/cdn/endpoints/12345/cache", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

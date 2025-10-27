@@ -693,7 +693,7 @@ func TestDroplets_Destroy(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/droplets/12345", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/droplets/12345", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -707,7 +707,7 @@ func TestDroplets_DestroyByTag(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/droplets", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/droplets", func(_ http.ResponseWriter, r *http.Request) {
 		if r.URL.Query().Get("tag_name") != "testing-1" {
 			t.Errorf("Droplets.DeleteByTag did not request with a tag parameter")
 		}
@@ -901,7 +901,6 @@ func TestNetworkV4_String(t *testing.T) {
 	if expected != stringified {
 		t.Errorf("NetworkV4.String\n got=%#v\nwant=%#v", stringified, expected)
 	}
-
 }
 
 func TestNetworkV6_String(t *testing.T) {

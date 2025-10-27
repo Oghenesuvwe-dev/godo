@@ -298,7 +298,7 @@ func TestCertificates_Delete(t *testing.T) {
 	cID := "892071a0-bb95-49bc-8021-3afd67a210bf"
 	urlStr := "/v2/certificates"
 	urlStr = path.Join(urlStr, cID)
-	mux.HandleFunc(urlStr, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(urlStr, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

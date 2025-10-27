@@ -147,7 +147,7 @@ func TestFunctions_DeleteNamespace(t *testing.T) {
 	setup()
 	defer teardown()
 
-	mux.HandleFunc("/v2/functions/namespaces/123-abc", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/functions/namespaces/123-abc", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
@@ -270,7 +270,6 @@ func TestFunctions_GetTrigger(t *testing.T) {
 				}
 			}	
 		}`)
-
 	})
 
 	trigger, _, err := client.Functions.GetTrigger(ctx, "123-456", "my-trigger")
@@ -295,7 +294,6 @@ func TestFunctions_GetTrigger(t *testing.T) {
 		},
 	}
 	assert.Equal(t, expectedTrigger, trigger)
-
 }
 
 func TestFunctions_CreateTrigger(t *testing.T) {
@@ -420,7 +418,7 @@ func TestFunctions_UpdateTrigger(t *testing.T) {
 func TestFunctions_DeleteTrigger(t *testing.T) {
 	setup()
 	defer teardown()
-	mux.HandleFunc("/v2/functions/namespaces/123-abc/triggers/my-trigger", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/v2/functions/namespaces/123-abc/triggers/my-trigger", func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 
