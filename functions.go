@@ -208,7 +208,6 @@ func (s *FunctionsServiceOp) CreateTrigger(ctx context.Context, namespace string
 func (s *FunctionsServiceOp) UpdateTrigger(ctx context.Context, namespace string, trigger string, opts *FunctionsTriggerUpdateRequest) (*FunctionsTrigger, *Response, error) {
 	path := fmt.Sprintf(functionsTriggerBasePath+"/%s", namespace, trigger)
 	req, err := s.client.NewRequest(ctx, http.MethodPut, path, opts)
-
 	if err != nil {
 		return nil, nil, err
 	}
@@ -224,7 +223,6 @@ func (s *FunctionsServiceOp) UpdateTrigger(ctx context.Context, namespace string
 func (s *FunctionsServiceOp) DeleteTrigger(ctx context.Context, namespace string, trigger string) (*Response, error) {
 	path := fmt.Sprintf(functionsTriggerBasePath+"/%s", namespace, trigger)
 	req, err := s.client.NewRequest(ctx, http.MethodDelete, path, nil)
-
 	if err != nil {
 		return nil, err
 	}

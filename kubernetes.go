@@ -380,7 +380,6 @@ func (k KubernetesMaintenancePolicyDay) String() string {
 		return days[k]
 	}
 	return fmt.Sprintf("%d !Weekday", k)
-
 }
 
 // UnmarshalJSON parses the JSON string into KubernetesMaintenancePolicyDay

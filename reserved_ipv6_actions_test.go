@@ -30,7 +30,6 @@ func TestReservedIPV6sActions_Assign(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress","id":1,"type":"assign_ip","resource_type":"reserved_ipv6"}}`)
-
 	})
 
 	assign, _, err := client.ReservedIPV6Actions.Assign(ctx, "2604:a880:800:14::42c3:d000", 12345)

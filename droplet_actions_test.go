@@ -223,6 +223,7 @@ func TestDropletAction_PowerOnByTag(t *testing.T) {
 		t.Errorf("DropletActions.PowerOnByTag returned %+v, expected %+v", action, expected)
 	}
 }
+
 func TestDropletAction_Reboot(t *testing.T) {
 	setup()
 	defer teardown()
@@ -244,7 +245,6 @@ func TestDropletAction_Reboot(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	action, _, err := client.DropletActions.Reboot(ctx, 1)
@@ -281,7 +281,6 @@ func TestDropletAction_Restore(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	action, _, err := client.DropletActions.Restore(ctx, 1, 1)
@@ -319,7 +318,6 @@ func TestDropletAction_Resize(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	action, _, err := client.DropletActions.Resize(ctx, 1, "1024mb", true)
@@ -390,7 +388,6 @@ func TestDropletAction_PowerCycle(t *testing.T) {
 		}
 
 		fmt.Fprintf(w, `{"action":{"status":"in-progress"}}`)
-
 	})
 
 	action, _, err := client.DropletActions.PowerCycle(ctx, 1)

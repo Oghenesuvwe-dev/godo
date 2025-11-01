@@ -7,8 +7,10 @@ import (
 	"time"
 )
 
-const resourceV6Type = "ReservedIPv6"
-const reservedIPV6sBasePath = "v2/reserved_ipv6"
+const (
+	resourceV6Type        = "ReservedIPv6"
+	reservedIPV6sBasePath = "v2/reserved_ipv6"
+)
 
 // ReservedIPV6sService is an interface for interfacing with the reserved IPV6s
 // endpoints of the Digital Ocean API.

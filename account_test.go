@@ -69,7 +69,6 @@ func TestAccountString(t *testing.T) {
 	if expected != stringified {
 		t.Errorf("\n     got %+v\nexpected %+v", stringified, expected)
 	}
-
 }
 
 func TestAccountGetWithTeam(t *testing.T) {
@@ -144,5 +143,4 @@ func TestAccountStringWithTeam(t *testing.T) {
 	if expected != stringified {
 		t.Errorf("\n     got %+v\nexpected %+v", stringified, expected)
 	}
-
 }

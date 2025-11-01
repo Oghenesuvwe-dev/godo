@@ -339,7 +339,6 @@ func (s *DropletActionsServiceOp) GetByURI(ctx context.Context, rawurl string) (
 	}
 
 	return s.get(ctx, u.Path)
-
 }
 
 func (s *DropletActionsServiceOp) get(ctx context.Context, path string) (*Action, *Response, error) {
@@ -355,7 +354,6 @@ func (s *DropletActionsServiceOp) get(ctx context.Context, path string) (*Action
 	}
 
 	return root.Event, resp, err
-
 }
 
 func dropletActionPath(dropletID int) string {

@@ -99,7 +99,7 @@ func (req *PartnerAttachmentCreateRequest) buildReq() *partnerAttachmentRequestB
 type PartnerAttachmentUpdateRequest struct {
 	// Name is the name of the Partner Attachment
 	Name string `json:"name,omitempty"`
-	//VPCIDs is the IDs of the VPCs to which the Partner Attachment is connected to
+	// VPCIDs is the IDs of the VPCs to which the Partner Attachment is connected to
 	VPCIDs []string `json:"vpc_ids,omitempty"`
 }
 
@@ -230,8 +230,7 @@ type bgpAuthKeyRoot struct {
 	BgpAuthKey *BgpAuthKey `json:"bgp_auth_key"`
 }
 
-type RegenerateServiceKey struct {
-}
+type RegenerateServiceKey struct{}
 
 type regenerateServiceKeyRoot struct {
 	RegenerateServiceKey *RegenerateServiceKey `json:"-"`
